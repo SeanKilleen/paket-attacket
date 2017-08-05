@@ -1,4 +1,4 @@
-# Paket? Attack-it!
+# Paket? Attack it!
 A chrome extension that allows Paket into the Nuget Gallery..unofficially.
 
 A bit of fun I'm having with [the "infamous" PR on the Nuget Gallery](https://github.com/NuGet/NuGetGallery/pull/4437) that attempted to add Paket as a command tab.
