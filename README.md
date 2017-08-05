@@ -10,3 +10,6 @@ As for how the original PR issue came about, maybe by the time this is published
 
 ## Are PRs accepted?
 YUP.
+
+## Are you just trying to be a jerk?
+I'm really not, I promise. If this isn't received kindly I'll just take it down. It was an excuse to explore Chrome extensions.
