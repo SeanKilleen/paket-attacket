@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+
+  "name": "Paket-attaket",
+  "description": "This extension adds a Paket CLI instruction to the Nuget preview site for all packages.",
+  "version": "0.6",
+
+
+  "content_scripts": [{
+    "js": ["thirdParty/jquery-3.2.1.min.js","thirdParty/bootstrap-3.3.7.js", "content.js"],
+    "matches": ["https://preview.nuget.org/packages/*"],
+    "run_at": "document_start"
+  }]
+}
