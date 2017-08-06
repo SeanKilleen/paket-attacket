@@ -3,7 +3,7 @@
 
   "name": "Paket-attaket",
   "description": "This extension adds a Paket CLI instruction to the Nuget preview site for all packages.",
-  "version": "0.6",
+  "version": "0.7",
 
 
   "content_scripts": [{
