@@ -154,7 +154,7 @@ var paketSpec = {
   clipboardTextReplacement: function(clipboardTextFormattedForPaket){
     return clipboardTextFormattedForPaket.replace(">", "").trim();
   }
-}
+};
 
 var tab = NugetFunctionality.FillTabTemplate('paket-cli', 'Paket CLI');
 var panel = NugetFunctionality.FillPanelTemplate('paket-cli', 'Paket CLI');
