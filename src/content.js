@@ -127,13 +127,15 @@ var NugetFunctionality = {
     }
   },
 
-  ConfigureCopyButton : function (id) {
+  ConfigureCopyButton : function (id, textTransformationFunction) {
     var copyButton = $('#' + id + '-button');
     copyButton.popover({ trigger: 'manual' });
 
     copyButton.click(function () {
-      var text = $('#' + id + '-text').text().replace(">", "").trim();
-      NugetFunctionality.CopyTextToClipboard(text, copyButton);
+      var text = $('#' + id + '-text').text();
+
+      var textToCopy = textTransformationFunction(text);
+      NugetFunctionality.CopyTextToClipboard(textToCopy, copyButton);
       copyButton.popover('show');
       setTimeout(function () {
           copyButton.popover('destroy');
@@ -172,7 +174,7 @@ function fireContentLoadedEvent () {
     $("ul.nav-tabs").append(tab);
     $("div.tab-content").append(filledTemplate);
   
-    NugetFunctionality.ConfigureCopyButton(spec.id);
+    NugetFunctionality.ConfigureCopyButton(spec.id, spec.clipboardTextReplacement);
   });
  
 }
