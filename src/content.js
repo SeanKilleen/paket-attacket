@@ -142,6 +142,19 @@ var NugetFunctionality = {
   }
 };
 
+var paketSpec = {
+  label: 'Paket CLI',
+  id: 'paket-cli',
+  packageTextReplacement: function(packageTextFormattedForNuget){
+    var formattedPackageText = packageTextFormattedForNuget.replace("Install-Package", "> paket add");
+    formattedPackageText = formattedPackageText.replace("-Version", "--version");
+
+    return formattedPackageText;
+  },
+  clipboardTextReplacement: function(clipboardTextFormattedForPaket){
+    return clipboardTextFormattedForPaket.replace(">", "").trim();
+  }
+}
 
 var tab = NugetFunctionality.FillTabTemplate('paket-cli', 'Paket CLI');
 var panel = NugetFunctionality.FillPanelTemplate('paket-cli', 'Paket CLI');
