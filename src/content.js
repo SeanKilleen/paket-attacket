@@ -33,7 +33,7 @@ var NugetFunctionality = {
               '</div>'; 
   },
 
-  detectIE : function() {
+  DetectIE : function() {
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf('MSIE ');
     if (msie > 0) {
@@ -53,7 +53,7 @@ var NugetFunctionality = {
   },
 
   CopyTextToClipboard : function (text, elementToFocus) {
-    if (detectIE()) {
+    if (NugetFunctionality.DetectIE()) {
       try {
           window.clipboardData.setData('Text', text);
           console.log('Copying text command via IE-setData');
@@ -133,7 +133,7 @@ var NugetFunctionality = {
 
     copyButton.click(function () {
       var text = $('#' + id + '-text').text().replace(">", "").trim();
-      copyTextToClipboard(text, copyButton);
+      NugetFunctionality.CopyTextToClipboard(text, copyButton);
       copyButton.popover('show');
       setTimeout(function () {
           copyButton.popover('destroy');
@@ -143,8 +143,8 @@ var NugetFunctionality = {
 };
 
 
-var tab = tabTemplate('paket-cli', 'Paket CLI');
-var panel = panelTemplate('paket-cli', 'Paket CLI');
+var tab = NugetFunctionality.FillTabTemplate('paket-cli', 'Paket CLI');
+var panel = NugetFunctionality.FillPanelTemplate('paket-cli', 'Paket CLI');
 
 
 function fireContentLoadedEvent () {
@@ -156,7 +156,7 @@ function fireContentLoadedEvent () {
   var filledTemplate = panel.replace("{{TOKEN}}", formattedPackageText);
   $("ul.nav-tabs").append(tab);
   $("div.tab-content").append(filledTemplate);
-  configureCopyButton('paket-cli');
+  NugetFunctionality.ConfigureCopyButton('paket-cli');
 };
 
 document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
