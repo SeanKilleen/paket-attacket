@@ -156,20 +156,25 @@ var paketSpec = {
   }
 };
 
-var tab = NugetFunctionality.FillTabTemplate('paket-cli', 'Paket CLI');
-var panel = NugetFunctionality.FillPanelTemplate('paket-cli', 'Paket CLI');
 
+var specs = [paketSpec];
 
 function fireContentLoadedEvent () {
+  var nugetFormattedPackageText = $("#package-manager-text > span").text();
 
-  var packageText = $("#package-manager-text > span").text();
-  var formattedPackageText = packageText.replace("Install-Package", "> paket add");
-  formattedPackageText = formattedPackageText.replace("-Version", "--version");
+  $.each(specs, function(index, spec){
+    var tab = NugetFunctionality.FillTabTemplate(spec.id, spec.label);
+    var panel = NugetFunctionality.FillPanelTemplate(spec.id, spec.label);
 
-  var filledTemplate = panel.replace("{{TOKEN}}", formattedPackageText);
-  $("ul.nav-tabs").append(tab);
-  $("div.tab-content").append(filledTemplate);
-  NugetFunctionality.ConfigureCopyButton('paket-cli');
-};
+    var formattedPackageText = spec.packageTextReplacement(nugetFormattedPackageText);
+    var filledTemplate = panel.replace("{{TOKEN}}", formattedPackageText);
+ 
+    $("ul.nav-tabs").append(tab);
+    $("div.tab-content").append(filledTemplate);
+  
+    NugetFunctionality.ConfigureCopyButton(spec.id);
+  });
+ 
+}
 
 document.addEventListener('DOMContentLoaded', fireContentLoadedEvent, false);
