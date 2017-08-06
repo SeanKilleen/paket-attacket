@@ -144,22 +144,24 @@ var NugetFunctionality = {
   }
 };
 
-var paketSpec = {
-  label: 'Paket CLI',
-  id: 'paket-cli',
-  packageTextReplacement: function(packageTextFormattedForNuget){
-    var formattedPackageText = packageTextFormattedForNuget.replace("Install-Package", "> paket add");
-    formattedPackageText = formattedPackageText.replace("-Version", "--version");
+var Specs = {
+  PaketSpec : {
+    label: 'Paket CLI',
+    id: 'paket-cli',
+    packageTextReplacement: function(packageTextFormattedForNuget){
+      var formattedPackageText = packageTextFormattedForNuget.replace("Install-Package", "> paket add");
+      formattedPackageText = formattedPackageText.replace("-Version", "--version");
 
-    return formattedPackageText;
-  },
-  clipboardTextReplacement: function(clipboardTextFormattedForPaket){
-    return clipboardTextFormattedForPaket.replace(">", "").trim();
+      return formattedPackageText;
+    },
+    clipboardTextReplacement: function(clipboardTextFormattedForPaket){
+      return clipboardTextFormattedForPaket.replace(">", "").trim();
+    }
   }
 };
 
 
-var specs = [paketSpec];
+var specs = [Specs.PaketSpec];
 
 function fireContentLoadedEvent () {
   var nugetFormattedPackageText = $("#package-manager-text > span").text();
