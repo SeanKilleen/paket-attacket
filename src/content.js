@@ -1,11 +1,10 @@
 /*
-  All of the notes on adapted functions indicate that the functions come from the Nuget Gallery JavaScript.
-  At the time of this code, those file were in the "feature-redesign" branch.
+  All of the items in the NugetFunctionality namespace indicate that the functions come from the Nuget Gallery JavaScript.
+  At the time of this code, those files were in the "feature-redesign" branch.
 */
-
-// Adapted from DisplayPackage.cshtml at https://github.com/NuGet/NuGetGallery
-var tabTemplate = function(id, label){
-   return '<li role="presentation" class="">'+
+var NugetFunctionality = {
+    FillTabTemplate : function(id, label){
+      return '<li role="presentation" class="">'+
             '<a href="#' + id + '" aria-expanded="false"'+
               'aria-selected="false"'+
               'aria-controls="' + id +'" role="tab" data-toggle="tab"'+
@@ -13,11 +12,10 @@ var tabTemplate = function(id, label){
                 label + 
             '</a>'+
           '</li>';
-};
+  },
 
-// Adapted from DisplayPackage.cshtml at https://github.com/NuGet/NuGetGallery
-var panelTemplate = function(id, label){
-  return     '<div role="tabpanel" class="tab-pane" id="' + id + '">' + 
+  FillPanelTemplate : function(id, label){
+    return     '<div role="tabpanel" class="tab-pane" id="' + id + '">' + 
                 '<div>' + 
                   '<div class="install-script" id="' + id + '-text">' + 
                     '<span>' + 
@@ -33,6 +31,7 @@ var panelTemplate = function(id, label){
                   '</div>' + 
                 '</div>' + 
               '</div>'; 
+  }
 };
 
 // taken verbatim from src/NuGetGallery/Scripts/gallery/common.js
