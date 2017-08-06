@@ -1,17 +1,19 @@
-/*
-  All of the items in the NugetFunctionality namespace indicate that the functions come from the Nuget Gallery JavaScript.
-  At the time of this code, those files were in the "feature-redesign" branch.
-*/
+/**
+ * All of the items in the NugetFunctionality namespace indicate that the functions come from the Nuget Gallery JavaScript.
+ * At the time of this code, those files were in the "feature-redesign" branch.
+ * I've tweaked it as necessary to include other references to the namespace and to modify the copy clipboard text functionality
+ * to take in a transformation function.
+ */
 var NugetFunctionality = {
-    FillTabTemplate : function(id, label){
-      return '<li role="presentation" class="">'+
-            '<a href="#' + id + '" aria-expanded="false"'+
-              'aria-selected="false"'+
-              'aria-controls="' + id +'" role="tab" data-toggle="tab"'+
-              'title="Switch to tab panel which contains package installation command for ' + label + '">'+
-                label + 
-            '</a>'+
-          '</li>';
+  FillTabTemplate : function(id, label){
+    return '<li role="presentation" class="">'+
+          '<a href="#' + id + '" aria-expanded="false"'+
+            'aria-selected="false"'+
+            'aria-controls="' + id +'" role="tab" data-toggle="tab"'+
+            'title="Switch to tab panel which contains package installation command for ' + label + '">'+
+              label + 
+          '</a>'+
+        '</li>';
   },
 
   FillPanelTemplate : function(id, label){
@@ -144,6 +146,11 @@ var NugetFunctionality = {
   }
 };
 
+/**
+ * Each "spec" (for lack of a better word) needs to specify an ID and label, as well as two functions:
+ *  1) to take nuget-formatted text and modify it to be the text of the spec (for display)
+ *  2) to take the displayed text and format it for the clipboard
+ */
 var Specs = {
   PaketSpec : {
     label: 'Paket CLI',
@@ -160,11 +167,12 @@ var Specs = {
   }
 };
 
-
 var specs = [Specs.PaketSpec];
 
 function fireContentLoadedEvent () {
   var nugetFormattedPackageText = $("#package-manager-text > span").text();
+  var tabList = $("ul.nav-tabs");
+  var tabContents = $("div.tab-content");
 
   $.each(specs, function(index, spec){
     var tab = NugetFunctionality.FillTabTemplate(spec.id, spec.label);
@@ -173,8 +181,8 @@ function fireContentLoadedEvent () {
     var formattedPackageText = spec.packageTextReplacement(nugetFormattedPackageText);
     var filledTemplate = panel.replace("{{TOKEN}}", formattedPackageText);
  
-    $("ul.nav-tabs").append(tab);
-    $("div.tab-content").append(filledTemplate);
+    tabList.append(tab);
+    tabContents.append(filledTemplate);
   
     NugetFunctionality.ConfigureCopyButton(spec.id, spec.clipboardTextReplacement);
   });
