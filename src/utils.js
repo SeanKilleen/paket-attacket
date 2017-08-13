@@ -1,7 +1,6 @@
 'use strict';
 
 const $ = window.$;
-const cloneFirst = $collection => $collection.children().first().clone();
 const quote = str => str.match(/\s+/) ? `"${str}"` : str;
 
 module.exports = {
@@ -17,38 +16,28 @@ function setFontFamily(selector, fonts = []) {
   $('<style/>').text(fontStyle).appendTo(document.head);
 }
 
-function createTab($tabs, options = {}) {
+function createTab(options = {}) {
   const { id, label, title } = options;
-  const $tab = cloneFirst($tabs);
-  const $anchor = $tab.children('a');
-
-  // Adjust label and title.
   const anchorTitle = title ||
     `Switch to tab panel which contains package installation command for ${label}`;
-  $anchor.text(label);
-  $anchor.attr({ href: `#${id}`, 'aria-controls': id, title: anchorTitle });
 
-  // Set tab state.
-  $anchor.attr('aria-expanded', false);
-  $anchor.attr('aria-selected', false);
-  $tab.removeClass('active');
-
-  return $tab;
+  return $(`
+    <li role="presentation">
+      <a
+        href="#${id}"
+        aria-expanded="false"
+        aria-selected="false"
+        aria-controls="${id}"
+        role="tab"
+        data-toggle="tab"
+        title="${anchorTitle}">
+        ${label}
+      </a>
+    </li>`);
 }
 
-function createPanel($panels, options = {}) {
+function createPanel(options = {}) {
   const { id, label, script, prompt = true } = options;
-  const $panel = cloneFirst($panels);
-  const $copyButton = $panel.find('.copy-button button');
-  const $installScript = $panel.find('.install-script');
-
-  $panel.attr('id', id);
-  $copyButton
-    .attr('id', `${id}-button`)
-    .attr('aria-label', `Copy the ${label} command`);
-  $installScript
-    .attr('id', `${id}-text`)
-    .children('span').text(script);
 
   // Add embedded style for displaying prompt sign.
   if (prompt) {
@@ -56,10 +45,26 @@ function createPanel($panels, options = {}) {
     $('<style/>').text(prompt).appendTo(document.head);
   }
 
-  // Set panel state.
-  $panel.removeClass('active');
-
-  return $panel;
+  return $(`
+    <div role="tabpanel" class="tab-pane" id="${id}">
+      <div>
+        <div class="install-script" id="${id}-text">
+          <span>${script}</span>
+        </div>
+        <div class="copy-button">
+          <button
+            id="${id}-button"
+            class="btn btn-default btn-warning"
+            type="button"
+            data-toggle="popover"
+            data-placement="bottom"
+            data-content="Copied."
+            aria-label="Copy the ${label} command">
+            <span class="ms-Icon ms-Icon--Copy" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>`);
 }
 
 function configureCopyButton(id) {

@@ -43,10 +43,10 @@ function setInstallationSriptFont(fonts) {
 
 function addInstallationInstructions(options = {}) {
   const { position, active = false } = options;
-  const $newPanel = createPanel($panels, options);
+  const $newPanel = createPanel(options);
   insertAt($newPanel, $panels, position);
   configureCopyButton(options.id);
-  const $newTab = createTab($tabs, options);
+  const $newTab = createTab(options);
   insertAt($newTab, $tabs, position);
   if (active) $newTab.find('[role=tab]').tab('show');
 }
