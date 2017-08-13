@@ -28,31 +28,20 @@ const fonts = [
   'Courier New',
   'monospace'
 ];
-setInstalationSriptFont(fonts);
+setInstallationSriptFont(fonts);
 
-addInstalationInstructions({
+addInstallationInstructions({
   id: 'paket-cli',
   label: 'Paket CLI',
   script: `paket add ${pkg.name} --version ${pkg.version}`,
   active: true
 });
-addInstalationInstructions({
-  id: 'nuget-cli',
-  label: 'nuget.exe',
-  script: `nuget.exe install ${pkg.name} -Version ${pkg.version}`
-});
-addInstalationInstructions({
-  id: 'csproj',
-  label: '.csproj',
-  script: `<PackageReference Include="${pkg.name}" Version="${pkg.version}" />`,
-  prompt: false
-});
 
-function setInstalationSriptFont(fonts) {
+function setInstallationSriptFont(fonts) {
   return setFontFamily('.tab-pane .install-script', fonts);
 }
 
-function addInstalationInstructions(options = {}) {
+function addInstallationInstructions(options = {}) {
   const { position, active = false } = options;
   const $newPanel = createPanel($panels, options);
   insertAt($newPanel, $panels, position);
