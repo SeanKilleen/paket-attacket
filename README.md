@@ -13,7 +13,7 @@ After installation make sure `npm` is globally available (set on `$PATH`) by run
 3. Start live compilation: `npm run watch`
 4. Go to Google Chrome, open `chrome://extensions/`
 5. Turn on :white_check_mark: `Developer mode`
-6. Hit <kbd>Load unpacked extension...</kbd> and navigate to project directory
+6. Hit <kbd>Load unpacked extension...</kbd> and navigate to project's `dist` directory
 7. Make changes & have fun :wink:
 
 If you want to use manual compilation change step 3. with `npm run build` and execute it again after you saved your changes.
