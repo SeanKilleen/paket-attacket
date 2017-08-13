@@ -3,4 +3,5 @@ node_modules/
 *.log
 
 # build artifact
-/script.js
+dist/*
+!dist/.gitkeep
