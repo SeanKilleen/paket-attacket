@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "clean": "del !.gitkeep dist/*",
+    "clean": "del-cli !dist !.gitkeep dist/*",
     "copy": "cpy src/manifest.json src/content.js dist",
     "prebuild": "npm run clean && npm run copy",
     "build": "browserify -t bubleify src/script.js > dist/script.js",
