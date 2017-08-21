@@ -6,7 +6,7 @@
   "web_accessible_resources": ["script.js"],
   "content_scripts": [{
     "js": ["content.js"],
-    "matches": ["https://preview.nuget.org/packages/*"],
+    "matches": ["https://preview.nuget.org/packages/*", "https://www.nuget.org/packages/*", "https://nuget.org/packages/*"],
     "run_at": "document_end"
   }]
 }
