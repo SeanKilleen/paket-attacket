@@ -3,6 +3,21 @@
 
 A bit of fun I'm having with [the "infamous" PR on the Nuget Gallery](https://github.com/NuGet/NuGetGallery/pull/4437) that attempted to add Paket as a command tab.
 
+## Build instructions
+
+In order to build project locally you'll need to install `node` & `npm`. You can do that by using [official installer](https://nodejs.org/en/) or node version manager: [creatonix/nvm](https://github.com/creatonix/nvm).
+After installation make sure `npm` is globally available (set on `$PATH`) by running `npm -v`.
+
+1. Clone project
+2. Install required dev dependencies: `npm install`
+3. Start live compilation: `npm run watch`
+4. Go to Google Chrome, open `chrome://extensions/`
+5. Turn on :white_check_mark: `Developer mode`
+6. Hit <kbd>Load unpacked extension...</kbd> and navigate to project's `dist` directory
+7. Make changes & have fun :wink:
+
+If you want to use manual compilation change step 3. with `npm run build` and execute it again after you saved your changes.
+
 ## FAQ
 
 ### How did this come about?

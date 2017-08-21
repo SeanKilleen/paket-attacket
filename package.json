@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "clean": "del-cli !dist !.gitkeep dist/*",
+    "copy": "cpy src/manifest.json src/content.js dist",
+    "prebuild": "npm run clean && npm run copy",
+    "build": "browserify -t bubleify src/script.js > dist/script.js",
+    "watch": "npm run prebuild && watchify src/script.js -t bubleify -d -o dist/script.js -v",
+    "lint": "eslint src/**"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "bubleify": "^0.7.0",
+    "cpy-cli": "^1.0.1",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.4.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "watchify": "^3.9.0"
+  }
+}
