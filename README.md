@@ -3,6 +3,11 @@
 
 A bit of fun I'm having with [the "infamous" PR on the Nuget Gallery](https://github.com/NuGet/NuGetGallery/pull/4437) that attempted to add Paket as a command tab.
 
+# NO LONGER NEEDED!
+Nuget.org now natively supports the Paket CLI, so users of this extension will only see duplicate tabs.
+
+Happy that this is now obsolete. :)
+
 ## Build instructions
 
 In order to build project locally you'll need to install `node` & `npm`. You can do that by using [official installer](https://nodejs.org/en/) or node version manager: [creatonix/nvm](https://github.com/creatonix/nvm).
